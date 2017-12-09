@@ -1,0 +1,6 @@
+arch-spec
+savegame.bin
+challenge.bin
+bin/
+.classpath
+.project
