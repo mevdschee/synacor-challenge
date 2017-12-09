@@ -44,7 +44,7 @@ public class SynacorVM {
 		byte[] bytes = Files.readAllBytes(Paths.get(filename));
 		for (int i = 0; i < mem.length; i++) {
 			if (i < bytes.length / 2) {
-				mem[i] = ((bytes[2 * i + 1] & 0xff) << 8) | (bytes[2 * i] & 0xff);
+				mem[i] = ((bytes[2 * i + 1] & 0x7f) << 8) | (bytes[2 * i] & 0xff);
 			} else {
 				mem[i] = 0;
 			}
@@ -59,7 +59,7 @@ public class SynacorVM {
 		mem[mem.length - 2] = s;
 		for (int i = 0; i < mem.length; i++) {
 			bytes[i * 2] = (byte) (mem[i] & 0xff);
-			bytes[i * 2 + 1] = (byte) ((mem[i] & 0xff00) >> 8);
+			bytes[i * 2 + 1] = (byte) ((mem[i] & 0x7f00) >> 8);
 		}
 		Files.write(Paths.get(filename), bytes);
 	}
